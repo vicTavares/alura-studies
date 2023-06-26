@@ -2,6 +2,11 @@
   grid-area: tarefas;
   height: 100%;
 
+  .addTarefas {
+    grid-area: tarefas;
+    height: 120%;
+  }
+
   h2 {
     font-size: 1.25rem;
     margin-bottom: 12px;
@@ -10,7 +15,7 @@
   ul {
     max-height: 350px;
     overflow-y: scroll;
-    scrollbar-width: thin;
+    scrollbar-width: medium;
   }
 
   @media screen and (min-width: 1280px) {
