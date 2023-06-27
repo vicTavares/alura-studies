@@ -10,6 +10,9 @@ interface Props {
 
 function Lista({ tarefas, selecionaTarefa }: Props) {
   //function Lista({ tarefas }: { tarefas: ITarefa[] }) {
+
+  // requisicao
+
   return (
     <aside className={style.listaTarefas}>
       <h2>Estudos do dia</h2>
