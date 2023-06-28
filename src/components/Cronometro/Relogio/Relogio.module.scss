@@ -5,6 +5,8 @@
   width: 3rem;
   padding: 8px 4px;
   border-radius: 12px;
+  border: 0ch;
+  box-sizing: content-box;
 
   @media screen and (min-width: 1280px) {
     height: 10.8rem;

@@ -22,8 +22,11 @@
 }
 
 .itemSelecionado {
-  background-color: #292929;
+  // background-color: #292929;
+  background-color: #1b102a;
   box-shadow: 2px 4px 4px #0000009f inset;
+  border-style: dotted;
+  border-color: #38700a;
 }
 
 .itemCompletado {
