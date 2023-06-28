@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Formulario from "../Formulario";
-import Lista from "../Lista";
+import Formulario from "../components/Formulario";
+import Lista from "../components/Lista";
 import style from "./App.module.scss";
-import { ITarefa } from "../../types/tarefa";
-import Cronometro from "../Cronometro";
+import { ITarefa } from "../types/tarefa";
+import Cronometro from "../components/Cronometro";
 
 function App() {
   const [tarefas, setTarefas] = useState<ITarefa[]>([]); // to Type useState como uma array <ITarefa[] ou uma array vazia []
