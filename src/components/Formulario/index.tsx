@@ -9,22 +9,23 @@ interface Props {
 }
 
 function Formulario({ setTarefas }: Props) {
-  const [tarefa, setTarefa] = useState("");
-  const [tempo, setTempo] = useState("00:00");
+  const [textoDaTarefa, setTextoDaTarefa] = useState("");
+  const [duracaoDaTarefa, setDuracaoDaTarefa] = useState("00:00");
+
   function adicionarTarefa(evento: React.FormEvent<HTMLFormElement>) {
     evento.preventDefault();
     setTarefas((tarefasAntigas) => [
       ...tarefasAntigas,
       {
-        tarefa,
-        tempo,
+        tarefa: textoDaTarefa,
+        tempo: duracaoDaTarefa,
         selecionado: false,
         completado: false,
         id: uuidv4(),
       },
     ]);
-    setTarefa("");
-    setTempo("00:00");
+    setTextoDaTarefa("");
+    setDuracaoDaTarefa("00:00");
   }
 
   return (
@@ -35,21 +36,21 @@ function Formulario({ setTarefas }: Props) {
           type="text"
           name="tarefa"
           id="tarefa"
-          value={tarefa}
-          onChange={(evento) => setTarefa(evento.target.value)}
+          value={textoDaTarefa}
+          onChange={(evento) => setTextoDaTarefa(evento.target.value)}
           placeholder="O que você quer estudar"
           required
         />
       </div>
       <div className={style.inputContainer}>
-        <label htmlFor="tempo">Tempo</label>
+        <label htmlFor="tempo">Duração</label>
         <input
           type="time"
           step="1"
-          name="tempo"
-          value={tempo}
-          onChange={(evento) => setTempo(evento.target.value)}
-          id="tempo"
+          name="duração"
+          value={duracaoDaTarefa}
+          onChange={(evento) => setDuracaoDaTarefa(evento.target.value)}
+          id="duração"
           min="00:00:00"
           max="01:30:00"
           required
