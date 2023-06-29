@@ -8,7 +8,7 @@ interface Props {
   setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>;
 }
 
-function Formulario({ setTarefas }: Props) {
+export function FormularioDeTarefa({ setTarefas }: Props) {
   const [textoDaTarefa, setTextoDaTarefa] = useState("");
   const [duracaoDaTarefa, setDuracaoDaTarefa] = useState("00:00");
 
@@ -60,5 +60,3 @@ function Formulario({ setTarefas }: Props) {
     </form>
   );
 }
-
-export default Formulario;

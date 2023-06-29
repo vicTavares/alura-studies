@@ -53,4 +53,6 @@ class Botao1 extends React.Component<{
   }
 }*/
 
+// TODO: trocar export deafult por export nomeado neste e nos demais componentes
+
 export default Botao;
