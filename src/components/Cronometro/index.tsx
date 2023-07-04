@@ -19,8 +19,8 @@ export function Cronometro({
   const [tempo, setTempo] = useState<number>();
 
   useEffect(() => {
-    if (tarefaAlvo?.tempo) {
-      setTempo(tempoParaSegundos(tarefaAlvo.tempo));
+    if (tarefaAlvo?.duracaoEmSegundos) {
+      setTempo(tarefaAlvo.duracaoEmSegundos);
     }
   }, [tarefaAlvo]);
 
