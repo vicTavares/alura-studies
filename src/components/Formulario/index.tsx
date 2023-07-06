@@ -4,16 +4,27 @@ import { Botao } from "../Botao";
 import style from "./Formulario.module.scss";
 import { v4 as uuidv4 } from "uuid";
 
-interface Props {
+export interface Props {
   setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>;
 }
 
 export function FormularioDeTarefa({ setTarefas }: Props) {
   const [textoDaTarefa, setTextoDaTarefa] = useState("");
   //const [duracaoDaTarefa, setDuracaoDaTarefa] = useState("00:00:00");
-  const [duracaoDaTarefaHora, setDuracaoDaTarefaHora] = useState(0);
-  const [duracaoDaTarefaMinuto, setDuracaoDaTarefaMinuto] = useState(0);
-  const [duracaoDaTarefaSegundo, setDuracaoDaTarefaSegundo] = useState(0);
+  const [duracaoDaTarefaHora, setDuracaoDaTarefaHora] = useState<
+    number | undefined
+  >();
+  const [duracaoDaTarefaMinuto, setDuracaoDaTarefaMinuto] = useState<
+    number | undefined
+  >();
+  const [duracaoDaTarefaSegundo, setDuracaoDaTarefaSegundo] = useState<
+    number | undefined
+  >();
+
+  const duracaoDaTarefaEmSegundos =
+    (duracaoDaTarefaHora || 0) * 3600 +
+    (duracaoDaTarefaMinuto || 0) * 60 +
+    (duracaoDaTarefaSegundo || 0);
 
   function adicionarTarefa(evento: React.FormEvent<HTMLFormElement>) {
     evento.preventDefault();
@@ -22,10 +33,7 @@ export function FormularioDeTarefa({ setTarefas }: Props) {
       {
         tarefa: textoDaTarefa,
         //tempo: duracaoDaTarefa,
-        duracaoEmSegundos:
-          duracaoDaTarefaHora * 3600 +
-          duracaoDaTarefaMinuto * 60 +
-          duracaoDaTarefaSegundo,
+        duracaoEmSegundos: duracaoDaTarefaEmSegundos,
         status: "todo",
         disabled: "true",
         id: uuidv4(),
@@ -33,9 +41,9 @@ export function FormularioDeTarefa({ setTarefas }: Props) {
     ]);
     setTextoDaTarefa("");
     // setDuracaoDaTarefa("00:00");
-    setDuracaoDaTarefaHora(0);
-    setDuracaoDaTarefaMinuto(0);
-    setDuracaoDaTarefaSegundo(0);
+    setDuracaoDaTarefaHora(undefined);
+    setDuracaoDaTarefaMinuto(undefined);
+    setDuracaoDaTarefaSegundo(undefined);
   }
 
   return (
@@ -56,50 +64,79 @@ export function FormularioDeTarefa({ setTarefas }: Props) {
       </div>
       <div className={style.inputContainer}>
         <span className={style.label}>Duração</span>
-        <input
-          type="number"
-          placeholder="horas"
-          step="1"
-          name="hora"
-          //value={duracaoDaTarefa}
-          value={duracaoDaTarefaHora}
-          onChange={(evento) =>
-            setDuracaoDaTarefaHora(Number(evento.target.value))
-          }
-          id="hora"
-          min="00"
-          required
-        />
-        <input
-          type="number"
-          placeholder="minutos"
-          step="1"
-          name="minuto"
-          //value={duracaoDaTarefa}
-          value={duracaoDaTarefaMinuto}
-          onChange={(evento) =>
-            setDuracaoDaTarefaMinuto(Number(evento.target.value))
-          }
-          id="minuto"
-          min="00"
-          required
-        />
-        <input
-          type="number"
-          placeholder="segundos"
-          step="1"
-          name="segundo"
-          //value={duracaoDaTarefa}
-          value={duracaoDaTarefaSegundo}
-          onChange={(evento) =>
-            setDuracaoDaTarefaSegundo(Number(evento.target.value))
-          }
-          id="segundo"
-          min="00"
-          required
-        />
+        <div className={style.div_font}>
+          {" "}
+          <input
+            alt="horas"
+            type="number"
+            placeholder="horas"
+            step="1"
+            name="hora"
+            //value={duracaoDaTarefa}
+            value={duracaoDaTarefaHora || ""}
+            onChange={(evento) =>
+              setDuracaoDaTarefaHora(
+                evento.target.value === ""
+                  ? undefined
+                  : Number(evento.target.value)
+              )
+            }
+            id="hora"
+            min="0"
+          />{" "}
+          : <label htmlFor="hora">Hora(s)</label>
+        </div>
+
+        <div className={style.div_font}>
+          {" "}
+          <input
+            type="number"
+            placeholder="minutos"
+            step="1"
+            name="minuto"
+            value={duracaoDaTarefaMinuto || ""}
+            onChange={(evento) => {
+              console.log(evento.target.value);
+              setDuracaoDaTarefaMinuto(
+                evento.target.value === ""
+                  ? undefined
+                  : Number(evento.target.value)
+              );
+            }}
+            id="minuto"
+            min="0"
+          />{" "}
+          : <label htmlFor="minuto">Minuto(s)</label>
+        </div>
+
+        <div className={style.div_font}>
+          {" "}
+          <input
+            type="number"
+            placeholder="segundos"
+            step="1"
+            name="segundo"
+            //value={duracaoDaTarefa}
+            value={duracaoDaTarefaSegundo || ""}
+            onChange={(evento) =>
+              setDuracaoDaTarefaSegundo(
+                evento.target.value === ""
+                  ? undefined
+                  : Number(evento.target.value)
+              )
+            }
+            id="segundo"
+            min="0"
+          />{" "}
+          : <label htmlFor="segundo">Segundo(s)</label>
+        </div>
       </div>
-      <Botao type="submit">Adicionar</Botao>
+      <Botao
+        disabled={duracaoDaTarefaEmSegundos === 0 || textoDaTarefa === ""}
+        type="submit"
+      >
+        Adicionar
+      </Botao>
     </form>
   );
 }
