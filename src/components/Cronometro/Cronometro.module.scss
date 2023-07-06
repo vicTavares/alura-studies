@@ -22,23 +22,6 @@
     font-size: 2rem;
   }
 
-  button {
-    background-color: #88bcd1;
-    border-radius: 10px;
-    box-shadow: 2px 4px 4px #0000009f;
-    color: #272626;
-    cursor: pointer;
-    font-size: 1.25rem;
-    padding: 16px;
-    width: 150px;
-
-    &:active {
-      background-color: #7ca6b7;
-      box-shadow: 2px 2px 4px #0000009f inset;
-      cursor: auto;
-    }
-  }
-
   @media screen and (min-width: 1280px) {
     .relogioWrapper {
       font-size: 15rem;

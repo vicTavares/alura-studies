@@ -9,9 +9,16 @@
   padding: 16px;
   width: 150px;
 
-  &:active {
+  &:active:not(:disabled) {
     background-color: #216b88;
     box-shadow: 4px 4px 10px #0000009f inset;
+  }
+
+  &:disabled {
+    background-color: #2b2b2b;
+    color: #848484;
+    box-shadow: none;
+    cursor: not-allowed;
   }
 }
 
