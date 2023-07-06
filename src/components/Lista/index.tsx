@@ -15,13 +15,20 @@ export function Lista({ tarefas, selecionaTarefa }: Props) {
   return (
     <aside className={style.listaTarefas}>
       <h2>Estudos do dia</h2>
+      {tarefas.length === 0 && (
+        <h3 className={style.informTarefa}>Nenhuma tarefa adicionada.</h3>
+      )}
       <ul>
         {tarefas.map((item) => (
           <Item
             selecionaTarefa={selecionaTarefa}
             key={item.id}
             {...item}
-            disabled={existeAlgumaTarefaDoing && item.status === "todo"}
+            disabled={
+              tarefas.length === 0 ||
+              (existeAlgumaTarefaDoing && item.status === "todo")
+            }
+            // disabled={duracaoDaTarefaEmSegundos === 0 || textoDaTarefa === ""}
           />
         ))}
       </ul>
