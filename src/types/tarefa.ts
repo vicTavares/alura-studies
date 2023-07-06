@@ -1,5 +1,5 @@
 export interface ITarefa {
-  tarefa: string;
+  tarefa: string | undefined | number;
   duracaoEmSegundos: number;
   id: string;
   status: "todo" | "doing" | "done" | "selected";
