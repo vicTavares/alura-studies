@@ -16,17 +16,19 @@ export function App() {
   )[0];
 
   function selecionaTarefa(tarefaSelecionada: ITarefa) {
-    setTarefas((tarefasAnteriores) =>
-      tarefasAnteriores.map((tarefa) => ({
-        ...tarefa,
-        status:
-          tarefa.id === tarefaSelecionada.id
-            ? "selected"
-            : tarefa.status === "selected"
-            ? "todo"
-            : tarefa.status,
-      }))
-    );
+    if (tarefaSelecionada.status === "todo") {
+      setTarefas((tarefasAnteriores) =>
+        tarefasAnteriores.map((tarefa) => ({
+          ...tarefa,
+          status:
+            tarefa.id === tarefaSelecionada.id
+              ? "selected"
+              : tarefa.status === "selected"
+              ? "todo"
+              : tarefa.status,
+        }))
+      );
+    }
   }
 
   function iniciarTarefa() {
